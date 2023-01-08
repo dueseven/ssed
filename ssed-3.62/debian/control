@@ -1,0 +1,20 @@
+Source: ssed
+Section: utils
+Priority: extra
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Jose Antonio Quevedo Muñoz <joseantonio.quevedo@gmail.com>
+Build-Depends: texinfo, debhelper (>= 7), autotools-dev
+Standards-Version: 3.8.4
+Homepage: http://sed.sf.net/grabbag/ssed/
+
+Package: ssed
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, dpkg (>= 1.15.4) | install-info
+Description: The super sed stream editor
+ Super sed reads the specified files or the standard input if no files are
+ specified, makes editing changes according to a list of commands, and
+ writes the results to the standard output.
+ .
+ Super sed is an enhanced version of GNU sed 3.02. Relative to 3.02, there
+ are several new features (including in-place editing of files, extended
+ regular expression syntax and a few new commands) and some bug fixes.

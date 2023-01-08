@@ -1,0 +1,3 @@
+version=3
+
+http://sed.sourceforge.net/grabbag/ssed/ sed-(.*)\.tar\.gz

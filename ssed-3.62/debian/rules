@@ -1,0 +1,76 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	cp -f /usr/share/misc/config.guess /usr/share/misc/config.sub .
+	cp -f /usr/share/misc/config.guess /usr/share/misc/config.sub config
+	./configure --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --program-prefix=s \
+		$(shell dpkg-buildflags --export=configure)
+
+	touch configure-stamp
+
+build: build-stamp
+build-stamp: configure-stamp
+	dh_testdir
+
+	$(MAKE)
+
+	$(MAKE) check
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+
+	# Add here commands to clean up after the build process.
+	rm -f config.guess config/config.guess config.sub config/config.sub
+	[ ! -f Makefile ] || $(MAKE) distclean
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/ssed
+
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installexamples
+	dh_installman
+	# Adjust info files to say ssed instead of sed
+	set -e; cd $(CURDIR)/debian/ssed/usr/share/info;   \
+	    for f in *; do                                 \
+                sed -e 's/^\* sed: (sed)/\* ssed: (ssed)/' \
+                    -e 's/sed.info/ssed.info/' $$f > s$$f; \
+	         rm $$f;                                   \
+            done; \
+            rm -f sdir
+	dh_installchangelogs ChangeLog
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

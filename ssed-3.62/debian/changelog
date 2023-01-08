@@ -1,0 +1,224 @@
+ssed (3.62-7build1) bionic; urgency=high
+
+  * No change rebuild to pick up -fPIE compiler default
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Tue, 03 Apr 2018 12:44:46 +0000
+
+ssed (3.62-7) unstable; urgency=low
+
+  * Updated maintainer field (closes: #565360)
+  * Added dpkg-buildflags to enable hardening.
+
+ -- Jose Antonio Quevedo <joseantonio.quevedo@gmail.com>  Sat, 14 Jul 2012 02:46:05 +0200
+
+ssed (3.62-6.5) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix "install-info installed leads to /usr/share/info/sdir.gz in
+    built package": remove file in debian/rules (closes: #597411).
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 02 Oct 2010 17:19:34 +0200
+
+ssed (3.62-6.4) unstable; urgency=low
+
+  * Non-maintainer upload
+  * Merge 3.62-6.3ubuntu1
+    Build with default compiler
+    Remove gcc-4.1 from Build-Depends
+    Closes: 463296
+  * Update config.guess config.sub in config
+  * Remove config.guess config.sub in the clean target
+  * DH compat level is 7
+  * Fix debhelper-but-no-misc-depends
+  * Fix package-uses-deprecated-debhelper-compat-version
+  * Fix package-lacks-versioned-build-depends-on-debhelper
+  * Fix debian-rules-sets-DH_COMPAT
+  * Fix debian-rules-ignores-make-clean-error
+  * Fix ancient-standards-version
+  * Fix copyright-refers-to-symlink-license
+  * Fix copyright-without-copyright-notice
+  * Fix no-homepage-field
+  * Fix missing-dependency-on-install-info
+  * Fix install-info-used-in-maintainer-script
+  * Fix maintainer-script-empty
+  * Fix dh-clean-k-is-deprecated
+  * Fix manpage-has-useless-whatis-entry
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Thu, 25 Mar 2010 13:25:02 +1100
+
+ssed (3.62-6.3ubuntu1) karmic; urgency=low
+
+  [ Steven Susbauer ]
+  * Merge from debian unstable (LP: #374350), remaining changes:
+    - Build with default compiler
+    - Remove gcc-4.1 from Build-Depends
+    - Update Maintainer
+
+ -- Steven Susbauer <steven@too1337.com>  Thu, 11 Jun 2009 01:05:13 -0600
+
+ssed (3.62-6.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix bashisms in debian/rules (Closes: #379587).
+  * Fix race-condition in debian/rules (Closes: #437914). Thanks go to Jachim
+    Reichel for the patch.
+  * Updated debian/watch to version 3 watchfile. The homepage of ssed wasn't
+    available anymore, and the best reference I could find for it was
+    http://sed.sourceforge.net/grabbag/ssed/ , which I used in the watch
+    file (Closes: #450299)
+  * Updated german PO file (Closes: #313874)
+  * pcre/pcregrep.c: fixed spelling mistake (Closes: #416510)
+
+ -- Lucas Nussbaum <lucas@lucas-nussbaum.net>  Tue, 15 Jan 2008 21:52:11 +0100
+
+ssed (3.62-6.2ubuntu2) hardy; urgency=low
+
+  * Fixed typo in pcre/pcregrep.c:249 (LP: #61030)
+  * Added patch-system into debian/rules
+
+ -- Ralph Janke <txwikinger@kubuntu-de.org>  Sat, 10 Nov 2007 13:53:52 +0000
+
+ssed (3.62-6.2ubuntu1) gutsy; urgency=low
+
+  * debian/rules: Set SHELL to /bin/bash.
+  * Build using the default compiler.
+  * Set Ubuntu maintainer address.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 23 Aug 2007 17:44:18 +0000
+
+ssed (3.62-6.2build1) feisty; urgency=low
+
+  * Rebuild for changes in the amd64 toolchain.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon,  5 Mar 2007 01:26:30 +0000
+
+ssed (3.62-6.2) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Actually include the change to fix the mips/mipsel FTBFS bug, which now
+    has a bug number: Closes: #397520.
+
+ -- Steinar H. Gunderson <sesse@debian.org>  Tue,  7 Nov 2006 23:40:19 +0100
+
+ssed (3.62-6.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Backport fix from PCRE upstream; in pcre/regexec.c, "start_match" was
+    never properly initialized. This lead to test suite failures on
+    mips/mipsel with optimizing builds of this file on gcc4; why it didn't on
+    any other platforms is a bit of a mystery, but with the fix it compiles
+    and passes the tests properly. This fixes an unreported FTBFS on
+    mips/mipsel, and hopefully lets a working version of ssed propagate to
+    etch, fixing at least one FTBFS there.
+
+ -- Steinar H. Gunderson <sesse@debian.org>  Tue,  7 Nov 2006 18:24:01 +0100
+
+ssed (3.62-6) unstable; urgency=low
+
+  * Fix real breakage, &size_t being passed where &int expected.
+  * Force gcc-4.1 once again since the actual breakage is fixed. 
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Wed, 12 Apr 2006 21:53:29 +0530
+
+ssed (3.62-5) unstable; urgency=low
+
+  * Unfortunately gcc-4.1 breaks ssed on amd64 and mipsel. gcc-3.4 appears 
+    to build it fine. So reverting to compile with gcc-3.4 (Closes: #361645).
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Wed, 12 Apr 2006 19:04:56 +0530
+
+ssed (3.62-4) unstable; urgency=low
+
+  * Argh, fix Build-Depends to require gcc 4.1 and not 3.4 (Closes: #361506).
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Sun,  9 Apr 2006 12:36:54 +0530
+
+ssed (3.62-3) unstable; urgency=low
+
+  * Fix pcretest.c test breakage on platforms with unsigned chars 
+    (Closes: #361213).
+  * Turns out that gcc-4.1 does not miscompiled ssed. So force compilation to 
+    use gcc-4.1. 
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Sat,  8 Apr 2006 21:07:44 +0530
+
+ssed (3.62-2) unstable; urgency=low
+
+  * gcc-4.0 and 4.1 miscompile ssed. Force compilation with gcc-3.4 
+    (Closes: 361104).
+  * Add "make check" to debian/rules to prevent such mistakes in future.
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Fri,  7 Apr 2006 09:49:15 +0530
+
+ssed (3.62-1) unstable; urgency=low
+
+  * New upstream release (Closes: #219988, #262132, #219988).
+  * Acknowledge NMU (Closes: #240217).
+  * Update standards version.
+  * Copy updated config.{guess,sub} before building (Closes: #342430).
+  * Update DH_COMPAT version to 4 to avoid lintian warning.
+  * Fix build breakage with new make (Closes: #353861).
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Tue,  7 Mar 2006 16:19:33 +0530
+
+ssed (3.60-2.1) unstable; urgency=low
+
+  * NMU
+  * Don't ship /usr/share/info/dir.gz. (Closes: #219988)
+
+ -- Andreas Metzler <ametzler@debian.org>  Tue, 23 Mar 2004 16:45:36 +0100
+
+ssed (3.60-2) unstable; urgency=medium
+
+  * Fix "Cannot reallocate memory" bug on arm. Thanks to 
+    Brian Nelson <pyro@debian.org> for the patch (Closes: #191992).
+  * Explained that backreferences greater than 9 are not supported
+    in the RHS (Closes: #179303).
+  * Fixed some typos in the info documentation (Closes: #170379).
+  * Updated standards version.
+  
+ -- Ganesan Rajagopal <rganesan@debian.org>  Fri, 16 May 2003 15:08:58 +0530
+
+ssed (3.60-1) unstable; urgency=low
+
+  * New upstream release. This release comes with an updated config.guess 
+    and config.sub. (Closes #168646)
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Tue, 12 Nov 2002 08:47:58 +0530
+
+ssed (3.59-2) unstable; urgency=low
+
+  * Fixed upstream location (Closes #163400)
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Fri, 25 Oct 2002 09:01:58 +0530
+
+ssed (3.59-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Sat,  5 Oct 2002 10:43:58 +0530
+
+ssed (3.58-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Tue, 28 May 2002 08:51:01 +0530
+
+ssed (3.57a-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Tue,  5 Mar 2002 11:43:38 +0530
+
+ssed (3.56-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Tue, 22 Jan 2002 07:25:19 +0530
+
+ssed (3.55-1) unstable; urgency=low
+
+  * Initial Release (Closes #126434).
+
+ -- Ganesan Rajagopal <rganesan@debian.org>  Thu, 03 Jan 2001 15:04:15 +0530
+

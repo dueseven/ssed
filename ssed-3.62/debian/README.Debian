@@ -1,0 +1,9 @@
+ssed for Debian
+---------------
+
+ssed is packaged as a stand alone package. It does not use the alternatives
+mechanism or divert /usr/bin/sed. The ssed upstream maintainer has taken
+over the maintenance of GNU sed also. This package may go away if all
+features in ssed get merged into a future version of GNU sed. 
+
+ -- Ganesan Rajagopal <rganesan@debian.org>, Sat, 05 Oct 2002 10:48:15 +0530
