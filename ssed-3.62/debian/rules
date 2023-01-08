@@ -39,6 +39,7 @@ install: build
 	dh_testroot
 	dh_prep
 	dh_installdirs
+	dh_install
 
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/ssed
 
